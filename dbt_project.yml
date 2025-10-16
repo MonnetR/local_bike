@@ -36,8 +36,6 @@ models:
   example:
     staging:
       +materialized: view
-      google_analytics:
-        +materialized: table
     intermediate:
       +materialized: view
     mart:
