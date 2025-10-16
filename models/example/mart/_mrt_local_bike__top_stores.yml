@@ -1,0 +1,20 @@
+
+version: 2
+
+models:
+  - name: mrt_local_bike__top_stores
+    description: "This model display the 20 top stores with the highest total orders amount ordered by total orders amount"
+
+    columns:
+        - name: store_id
+          description: "The primary key for this table, ID of the store"
+        - name: store_name
+          description: "Name of the store"
+        - name: store_city
+          description: "City of the store"
+        - name: store_state,
+          description: "State of the store"
+        - name: total_orders_amount
+          description: "Total orders amount"
+        - name: total_orders
+          description: "Total number of orders"

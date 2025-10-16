@@ -1,0 +1,30 @@
+
+version: 2
+
+models:
+  - name: mrt_local_bike__best_product_by_store
+    description: "This model contains the information of the most sold product by store"
+
+    columns:
+        - name: store_id
+          description: "The primary key for this table, ID of the store"
+        - name: store_name
+          description: "Name of the store"
+        - name: store_city
+          description: "City of the store"
+        - name: store_state
+          description: "State of the store"
+        - name: total_quantity
+          description: "Total quantity sold of the moste product sold"
+        - name: most_sold_product_id
+          description: "ID of the most product sold"
+        - name: most_sold_product_name
+          description: "Name of the most product sold"
+        - name: most_sold_brand_id
+          description: "Brand ID of the most product sold"
+        - name: most_sold_brand_name
+          description: "Brand name of the most product sold"
+        - name: most_sold_category_id
+          description: "Category ID of the most product sold"
+        - name: most_sold_category_name
+          description: "Category name of the most product sold"

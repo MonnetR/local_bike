@@ -1,0 +1,107 @@
+version: 2
+
+models:
+  - name: stg_sales_database__order
+    description: "This model contains information about orders"
+
+    columns:
+      - name: order_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: order_status
+        tests:
+          - accepted_values:
+              arguments:
+                values: "{{ var('order_status_accepted_values_list') }}"
+  - name: stg_sales_database__order_item
+    description: "This model contains information about orders at order_item level"
+
+    columns:
+      - name: order_id
+        description: "Foreign key for the order model"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_sales_database__order')
+                field: order_id
+      - name: product_id
+        description: "Foreign key for the product model"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_sales_database__product')
+                field: product_id
+      - name: seller_id
+        description: "Foreign key for the seller model"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_sales_database__seller')
+                field: seller_id
+      - name: total price
+        description: "Corresponds to: (price * quantity) + shipping_cost"
+
+  - name: stg_sales_database__feedback
+    description: "This model contains information about order feedbacks"
+
+    columns:
+      - name: feedback_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Foreign key for the order model"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_sales_database__order')
+                field: order_id
+
+  - name: stg_sales_database__payment
+    description: "This model contains information about order payments"
+
+    columns:
+      - name: order_id
+        description: "Foreign key for the order model"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_sales_database__order')
+                field: order_id
+      - name: payment_type
+        tests:
+          - accepted_values:
+              arguments:
+                values: "{{ var('payment_type_accepted_values_list') }}"
+  - name: stg_sales_database__product
+    description: "This model contains information about product that can be in an order"
+
+    columns:
+      - name: product_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales_database__seller
+    description: "This model contains information about sellers"
+
+    columns:
+      - name: seller_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales_database__user
+    description: "This model contains information about customers"
+
+    columns:
+      - name: user_name
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null

@@ -1,0 +1,164 @@
+version: 2
+
+models:
+
+  - name: stg_local_bike__brands
+    description: "Brands raw data"
+    columns:
+      - name: brand_id
+        description: "Primary key of brands model"
+        tests:
+          - unique
+          - not_null
+      - name: brand_name
+        description: "Brand name"
+        tests:
+          - not_null
+
+  - name: stg_local_bike__categories
+    description: "Categories raw data"
+    columns:
+      - name: category_id
+        description: "Primary key of categories model"
+        tests:
+          - unique
+          - not_null
+      - name: category_name
+        description: "Category label"
+        tests:
+          - not_null
+
+  - name: stg_local_bike__customers
+    description: "Customers raw data"
+    columns:
+      - name: customer_id
+        description: "Primary key for customers model"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_local_bike__order_items
+    description: "Order_items raw data"
+    columns:
+      - name: order_item_id
+        description: "Priamry key for order_items model"
+        tests:
+          - unique
+          - not_null
+      - name: product_id
+        description: "Foreign key for the product model"
+        tests:
+        - relationships:
+            arguments:
+              to: ref('stg_local_bike__products')
+              field: product_id
+      - name: order_id
+        description: "Foreign key for the order model"
+        tests:
+        - relationships:
+            arguments:
+              to: ref('stg_local_bike__orders')
+              field: order_id
+      - name: total_price
+        description: "total price of order_item: (price with discount) * quantity"
+
+  - name: stg_local_bike__orders
+    description: "Orders raw data"
+    columns:
+      - name: order_id
+        description: "Primary key of orders model"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key for the customers model"
+        tests:
+        - relationships:
+            arguments:
+              to: ref('stg_local_bike__customers')
+              field: customer_id
+      - name: store_id
+        description: "Foreign key for the stores model"
+        tests:
+        - relationships:
+            arguments:
+              to: ref('stg_local_bike__stores')
+              field: store_id
+      - name: staff_id
+        description: "Foreign key for the staffs model"
+        tests:
+        - relationships:
+            arguments:
+              to: ref('stg_local_bike__staffs')
+              field: staff_id
+
+  - name: stg_local_bike__products
+    description: "Products raw data"
+    columns:
+      - name: product_id
+        description: "Primary key of orders model"
+        tests:
+          - unique
+          - not_null
+      - name: brand_id
+        description: "Foreign key for the brands model"
+        tests:
+        - relationships:
+            arguments:
+              to: ref('stg_local_bike__brands')
+              field: brand_id
+      - name: category_id
+        description: "Foreign key for the categories model"
+        tests:
+        - relationships:
+            arguments:
+              to: ref('stg_local_bike__categories')
+              field: category_id
+
+  - name: stg_local_bike__staffs
+    description: "Staffs raw data"
+    columns:
+      - name: staff_id
+        description: "Primary key of staffs model"
+        tests:
+          - unique
+          - not_null
+      - name: store_id
+        description: "Foreign key for the stores model"
+        tests:
+        - relationships:
+            arguments:
+              to: ref('stg_local_bike__stores')
+              field: store_id          
+
+  - name: stg_local_bike__stocks
+    description: "Stocks raw data"
+    columns:
+      - name: stock_id
+        description: "Primary key of stocks model"
+        tests:
+          - unique
+          - not_null
+      - name: store_id
+        description: "Foreign key for the stores model"
+        tests:
+        - relationships:
+            arguments:
+              to: ref('stg_local_bike__stores')
+              field: store_id     
+      - name: product_id
+        description: "Foreign key for the products model"
+        tests:
+        - relationships:
+            arguments:
+              to: ref('stg_local_bike__products')
+              field: product_id     
+
+  - name: stg_local_bike__stores
+    description: "Stores raw data"
+    columns:
+      - name: store_id
+        description: "Primary key of stores model"
+        tests:
+          - unique
+          - not_null

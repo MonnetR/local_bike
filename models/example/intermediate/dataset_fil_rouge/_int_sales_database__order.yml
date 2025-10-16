@@ -1,0 +1,15 @@
+
+version: 2
+
+models:
+  - name: int_sales_database__order
+    description: "This model contains information about orders"
+
+    columns:
+        - name: order_id
+          description: "The primary key for this table"
+          tests:
+          - unique
+          - not_null
+        - name: user_name
+          description: "Foreign key to user intermediate model"

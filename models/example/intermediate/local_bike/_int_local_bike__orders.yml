@@ -1,0 +1,13 @@
+
+version: 2
+
+models:
+  - name: int_local_bike__orders
+    description: "This model contains information about orders"
+
+    columns:
+        - name: order_id
+          description: "The primary key for this table"
+          tests:
+          - unique
+          - not_null

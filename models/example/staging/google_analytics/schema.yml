@@ -1,0 +1,10 @@
+
+version: 2
+
+models:
+  - name: stg_google_analytics__event
+    description: "This model contains information og GA4 flattened"
+
+    columns:
+        - name: ga_session_id
+          description: "The primary key for this table"

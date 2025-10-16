@@ -1,0 +1,14 @@
+
+version: 2
+
+models:
+  - name: mrt_local_bike__orders_by_month
+    description: "This model displays the top 50 months with the hisghest number of orders"
+
+    columns:
+        - name: year_month
+          description: "The primary key for this table, month with format YYYY-MM"
+        - name: total_orders
+          description: "Total number of orders of the month"
+        - name: total_orders_amount
+          description: "Toat order amount of the month"
